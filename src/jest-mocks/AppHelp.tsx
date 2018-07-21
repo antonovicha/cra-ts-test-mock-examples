@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from 'axios';
 
 import { HelpServiceNamed } from './helpServiceNamed';
 import HelpServiceDefault from './helpServiceDefault';
@@ -18,6 +19,11 @@ class AppHelp extends React.Component {
 
   public handleDefaultClick(): string {
     return 'HELP wanted ' + this.helpServiceDefault.helpMe();
+  }
+
+  public async handleHttpCall(): Promise<string> {
+    const resp = await axios.get<string>('http://google.com');
+    return resp.data;
   }
 
   public render(): React.ReactNode {
