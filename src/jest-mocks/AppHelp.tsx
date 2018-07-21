@@ -1,9 +1,11 @@
 import * as React from "react";
 
 import { HelpServiceNamed } from './helpServiceNamed';
+import HelpServiceDefault from './helpServiceDefault';
 
 class AppHelp extends React.Component {
   private helpService = new HelpServiceNamed();
+  private helpServiceDefault = new HelpServiceDefault();
 
   constructor(props: any) {
     super(props);
@@ -12,6 +14,10 @@ class AppHelp extends React.Component {
 
   public handleNamedClick(): string {
     return 'HELP wanted ' + this.helpService.helpMe();
+  }
+
+  public handleDefaultClick(): string {
+    return 'HELP wanted ' + this.helpServiceDefault.helpMe();
   }
 
   public render(): React.ReactNode {
