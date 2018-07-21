@@ -1,0 +1,44 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "chrome",
+          "request": "attach",
+          "name": "Attach to Chrome",
+          "port": 9222,
+          "webRoot": "${workspaceFolder}",
+          "url": "http://localhost:3000"
+      },
+      {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Launch Chrome against localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}"
+      },
+      {
+          "name": "Debug Jest test",
+          "type": "node",
+          "request": "launch",
+          "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts-ts",
+          "args": [
+              "--inspect-brk",
+              "test",
+              "--env=jsdom",
+              "--runInBand",
+              "--verbose",
+              "${fileBasename}",
+              // crappy workaround because of stubborn guys from CRA:
+              // https://github.com/facebook/create-react-app/issues/1137#issuecomment-279191193
+              // https://github.com/facebook/create-react-app/pull/533
+              "--coverage"
+          ],
+          "cwd": "${workspaceRoot}",
+          "protocol": "inspector",
+          "console": "integratedTerminal"
+      }
+  ]
+}
