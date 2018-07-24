@@ -12,9 +12,12 @@ jest.mock('axios');
 describe('AppHelp tests', () => {
   const helpServiceNamed: jest.MockInstance<HelpServiceNamed> = HelpServiceNamed as any;
   const helpServiceDefault: jest.MockInstance<HelpServiceDefault> = HelpServiceDefault as any;
+  let savedAxios = Object.assign({}, axios);
 
   beforeEach(() => {
+    Object.assign(axios, savedAxios);
     jest.resetAllMocks();
+    jest.resetModules();
   });
 
   test('renders without crashing', () => {
@@ -80,5 +83,17 @@ describe('AppHelp tests', () => {
     expect(result).toBe('mocked http result');
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith('http://google.com');
+  })
+
+  test('should replace 3rd party export public method with garbage', async () => {
+    // when
+    axios.get = '123' as any;
+    // then
+    expect(axios.get).toBe('123');
+  })
+
+  test('should restore 3rd party export public method from garbage', async () => {
+    // then
+    expect(axios.get).not.toBe('123');
   })
 });
