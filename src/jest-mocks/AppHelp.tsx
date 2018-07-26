@@ -1,8 +1,8 @@
-import * as React from "react";
 import axios from 'axios';
+import * as React from 'react';
 
-import { HelpServiceNamed } from './helpServiceNamed';
 import HelpServiceDefault from './helpServiceDefault';
+import { HelpServiceNamed } from './helpServiceNamed';
 
 class AppHelp extends React.Component {
   private helpService = new HelpServiceNamed();

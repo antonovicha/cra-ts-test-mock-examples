@@ -1,18 +1,20 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import AppHelp from './AppHelp';
-import { HelpServiceNamed } from './helpServiceNamed';
-import HelpServiceDefault from './helpServiceDefault';
+
 import axios from 'axios';
+import AppHelp from './AppHelp';
+import HelpServiceDefault from './helpServiceDefault';
+import { HelpServiceNamed } from './helpServiceNamed';
 jest.mock('./helpServiceNamed');
 jest.mock('./helpServiceDefault');
 jest.mock('axios');
 
+
 describe('AppHelp tests', () => {
   const helpServiceNamed: jest.MockInstance<HelpServiceNamed> = HelpServiceNamed as any;
   const helpServiceDefault: jest.MockInstance<HelpServiceDefault> = HelpServiceDefault as any;
-  let savedAxios = Object.assign({}, axios);
+  const savedAxios = Object.assign({}, axios);
 
   beforeEach(() => {
     Object.assign(axios, savedAxios);
