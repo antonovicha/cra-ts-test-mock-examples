@@ -6,6 +6,10 @@ class HelpServiceNamed {
   public helpMe(): string {
     return 'HelpServiceNamed: help me';
   }
+
+  public async helpMeAsync(val: number): Promise<string> {
+    return Promise.resolve('HelpService: help me');
+  }
 }
 
 export { HelpServiceNamed };

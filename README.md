@@ -11,13 +11,9 @@ VSCode is used for coding. It contains `Debug Jest test` launch configuration th
 
 Can be found in [jest-mocks](./src/jest-mocks/AppHelp.test.tsx)
 
-## typemoq examples
-
-WIP
-
 ## ts-mockito examples
 
-WIP
+Can be found in [mockito-mocks](./src/mockito-mocks/MockitoHelp.test.tsx)
 
 ## Known issues
 
