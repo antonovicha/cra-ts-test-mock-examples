@@ -26,6 +26,11 @@ class AppHelp extends React.Component {
     return resp.data;
   }
 
+  public async callAsyncHelp(): Promise<string> {
+    const res = await this.helpService.helpMeAsync(123);
+    return 'Help wanted (async) ' + res;
+  }
+
   public render(): React.ReactNode {
     return <div onClick={this.handleNamedClick}>Some App HELP F1</div>;
   }

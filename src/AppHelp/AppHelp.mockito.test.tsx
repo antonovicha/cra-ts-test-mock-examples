@@ -2,11 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as mockito from 'ts-mockito';
 
-import MockitoHelp from './MockitoHelp';
-import { HelpServiceNamed } from '../jest-mocks/helpServiceNamed';
+import AppHelp from './AppHelp';
+import { HelpServiceNamed } from './helpServiceNamed';
 jest.mock('../jest-mocks/helpServiceNamed');
 
-describe('TypeMockHelp tests', () => {
+describe('AppHelp mockito tests', () => {
   const helpService: jest.MockInstance<HelpServiceNamed> = HelpServiceNamed as any;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('TypeMockHelp tests', () => {
 
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<MockitoHelp />, div);
+    ReactDOM.render(<AppHelp />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -27,13 +27,13 @@ describe('TypeMockHelp tests', () => {
     mockito.when(mockedHelp.helpMeAsync(123)).thenReturn(Promise.resolve('for mock'));
 
     expect(mock).not.toHaveBeenCalled();
-    const sut = new MockitoHelp({});
+    const sut = new AppHelp({});
     
     // when
-    const result = sut.handleClick();
+    const result = sut.handleNamedClick();
 
     // then
-    expect(result).toBe('MockitoHelp wanted for mock');
+    expect(result).toBe('HELP wanted for mock');
     expect(mock).toHaveBeenCalledTimes(1);
     mockito.verify(mockedHelp.helpMe()).once();
   })
@@ -44,13 +44,13 @@ describe('TypeMockHelp tests', () => {
     helpService.mockImplementation(() => mockito.instance(helpServiceNamed));
     mockito.when(helpServiceNamed.helpMeAsync(123)).thenReturn(Promise.resolve('for mock'));
 
-    const sut = new MockitoHelp({});
+    const sut = new AppHelp({});
 
     // when
     const result = await sut.callAsyncHelp();
 
     // then
-    expect(result).toBe('MockitoHelp wanted (async) for mock');
+    expect(result).toBe('Help wanted (async) for mock');
     mockito.verify(helpServiceNamed.helpMeAsync(123)).once();
   })
 });
