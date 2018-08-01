@@ -4,7 +4,7 @@ import * as mockito from 'ts-mockito';
 
 import AppHelp from './AppHelp';
 import { HelpServiceNamed } from './helpServiceNamed';
-jest.mock('../jest-mocks/helpServiceNamed');
+jest.mock('./helpServiceNamed');
 
 describe('AppHelp mockito tests', () => {
   const helpService: jest.MockInstance<HelpServiceNamed> = HelpServiceNamed as any;
