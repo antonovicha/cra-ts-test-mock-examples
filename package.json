@@ -7,13 +7,16 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts-ts": "2.16.0",
-    "ts-mockito": "^2.3.0"
+    "ts-mockito": "^2.3.0",
+    "tslint-config-airbnb": "^5.9.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "pretest": "yarn lint",
+    "build": "yarn lint && yarn react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "lint": "tslint --project tsconfig.json"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
